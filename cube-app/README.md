@@ -1,7 +1,9 @@
 # cube-app
 
 [cube-application-guide](https://github.com/cube-ui/cube-application-guide)
-`$ vue init cube-ui/cube-template`
+`$ vue init cube-ui/cube-template cube-app`
+
+cube-template [wiki](https://github.com/cube-ui/cube-template/wiki)
 
 > A Vue.js project
 
