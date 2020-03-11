@@ -46,9 +46,14 @@ import {
   Sticky,
   ScrollNav,
   ScrollNavBar,
-  RecycleList
+  RecycleList,
+  // Api
+  createAPI
 } from 'cube-ui'
 import App from './App'
+import SubscribeDialog from './components/subscribe-dialog/subscribe-dialog'
+
+createAPI(Vue, SubscribeDialog, [], true)
 
 Vue.use(Button)
 Vue.use(Loading)

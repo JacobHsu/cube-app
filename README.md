@@ -5,6 +5,9 @@
 
 > A Vue.js project
 
+[stage-4](https://github.com/cube-ui/cube-application-guide/tree/stage-4) docs [create-api](https://didi.github.io/cube-ui/#/zh-CN/docs/create-api) subscribeDialog
+
+
 ## Build Setup
 
 ``` bash

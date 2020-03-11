@@ -6,7 +6,7 @@
       :options="options"
       @pulling-down="onPullingDown"
       @pulling-up="onPullingUp">
-      <ul class="match-inner">
+      <ul>
         <li v-for="(item, index) in matchList" :key="index" class="match-item">
           <div class="left-team">
             <img :src="item.hostLogoUrl" alt="" class="logo">
@@ -58,7 +58,14 @@ export default {
       }
     }
   },
+  created () {
+    this.subscribeDialog = this.$createSubscribeDialog()
+    this.subscribeDialog.show()
+  },
   methods: {
+    subscribe () {
+      this.subscribeDialog.show()
+    },
     onPullingDown () {
       setTimeout(() => {
         if (Math.random() > 0.5) {
@@ -92,49 +99,37 @@ export default {
 <style lang="stylus">
 .match-list
   height: 618px
-  background-color: #E2E5EA
-  .match-inner
-    background-color: #FFFFFF
-    .match-item
-      border-bottom: 1px solid #E4E4E4
-      padding: 10px 0
-      display: flex
-      justify-content: space-around
-      .left-team,.right-team
-        text-align: center
-        width: 80px
-        img
-          display: inline-block
-          width: 38px
-          height: 38px
-          margin-bottom: 7px
-        .name 
-          font-size: 14px
-      .center
-        font-size: 12px
-        width: 80px
-        .guest
-          display: inline-block
-          background-color: #3D8F29
-          color: white
-          line-height: 16px
-          padding: 3px 10px
-          border-radius: 25px
-          margin-bottom: 7px
-        .order
-          display: inline-block
-          border:1px #2F6220 solid
-          border-radius: 25px
-          line-height: 16px
-          padding: 3px 20px
-          margin-bottom: 7px
-        .end
-          background-color: #E86F5D
-        .score
-          font-size: 14px
-          font-weight: 500
-          margin-bottom: 7px
-          position: relative
-        .time
-          color: #92929A
+  background-color: white
+  .match-item
+    border-bottom: 1px solid #f0f0f1
+    padding: 10px 0
+    display: flex
+    justify-content: space-around
+    .left-team,.right-team
+      text-align: center
+      width: 80px
+      img
+        display: inline-block
+        width: 35px
+        height: 35px
+        margin-bottom: 4px
+      .name 
+        font-size: 14px
+    .center
+      font-size: 12px
+      width: 80px
+      .guest
+        display: inline-block
+        background-color: #3D8F29
+        color: white
+        line-height: 16px
+        padding: 3px 10px
+        border-radius: 25px
+        margin-bottom: 5px
+      .end
+        background-color: #E86F5D
+      .score
+        font-size: 14px
+        font-weight: 500
+        margin-bottom: 5px
 </style>
