@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="header">
-      <div class="title" @click="showPicker">
+      <div class="title">
         <span>全部赛事</span>
         <i class="cubeic-select" :class="{flip: toFlip}" ref="select"></i>
       </div>

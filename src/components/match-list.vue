@@ -60,7 +60,7 @@ export default {
   },
   created () {
     this.subscribeDialog = this.$createSubscribeDialog()
-    this.subscribeDialog.show()
+    // this.subscribeDialog.show()
   },
   methods: {
     subscribe () {
