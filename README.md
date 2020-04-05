@@ -7,6 +7,34 @@
 
 [stage-4](https://github.com/cube-ui/cube-application-guide/tree/stage-4) docs [create-api](https://didi.github.io/cube-ui/#/zh-CN/docs/create-api) subscribeDialog
 
+### postcss-px-to-viewport
+
+移動端適配方案之 `postcss-px-to-viewport`
+
+```ja
+npm install postcss-px-to-viewport --save-dev
+```
+
+.postcssrc.js
+
+```js
+odule.exports = {
+  "plugins": {
+    // to edit target browsers: use "browserslist" field in package.json
+    "postcss-import": {},
+    "autoprefixer": {},
+    "postcss-px-to-viewport": {
+      "viewportWidth": 375,  // 視窗的寬度
+      "viewportHeight": 667, // 視窗的高度
+      "unitPrecision": 5, // 指定`px`轉換為視窗單位值的小數位數
+      "viewportUnit": "vw",
+      "selectorBlackList": [],
+      "minPixelValue": 1,
+      "mediaQuery": false
+    }
+  }
+}
+```
 
 ## Build Setup
 
