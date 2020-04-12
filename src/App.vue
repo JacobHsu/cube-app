@@ -1,10 +1,10 @@
 <template>
   <div id="app">
     <div class="header">
-      <div class="title">
+      <h1 class="title" @click="showPicker">
         <span>全部赛事</span>
-        <i class="cubeic-select" :class="{flip: toFlip}" ref="select"></i>
-      </div>
+        <i class="cubeic-select" :class="{down: toDown}"></i>
+      </h1>
       <div class="navigator">
         <ul class="nav-list">
           <li v-for="(item, index) in tabList" :key="index"
@@ -16,19 +16,19 @@
       </div>
     </div>
     <div class="content">
-        <cube-slide
+      <cube-slide
         :data="tabList"
         :initialIndex="currentPage"
         :loop="false"
         :autoPlay="false"
         :threshold="0.1"
         @change="slideChange">
-          <cube-slide-item v-for="(item, index) in tabList" :key="index">
-            <div class="match-list-wrapper">
-              <match-list :type="type" :status="index"></match-list>
-            </div>
-          </cube-slide-item>
-          <div slot="dots"></div>
+        <cube-slide-item v-for="(item, index) in tabList" :key="index">
+          <div class="match-list-wrapper">
+            <match-list :type="type" :status="index"></match-list>
+          </div>
+        </cube-slide-item>
+        <div slot="dots"></div>
       </cube-slide>
     </div>
   </div>
@@ -39,15 +39,33 @@ import MatchList from './components/match-list'
 
 export default {
   name: 'app',
-  components: {
-    MatchList
-  },
   data () {
     return {
       currentPage: 1,
       tabList: ['已结束', '直播中', '我的关注'],
+      toDown: false,
+      pickerList: [
+        {text: 'NBA', value: 'NBA'},
+        {text: 'DOTA', value: 'dota'},
+        {text: 'SOCCER', value: 'soccer'}
+      ],
       type: 'soccer'
     }
+  },
+  mounted () {
+    this.picker = this.$createPicker({
+      title: '赛事',
+      data: [this.pickerList],
+      onSelect: () => {
+        this.toDown = false
+      },
+      onCancel: () => {
+        this.toDown = false
+      },
+      onValueChange: (selectedVal) => {
+        this.type = selectedVal[0]
+      }
+    })
   },
   methods: {
     switchTab (index) {
@@ -55,17 +73,25 @@ export default {
     },
     slideChange (index) {
       this.currentPage = index
+    },
+    showPicker () {
+      this.toDown = true
+      this.picker.show()
     }
+  },
+  components: {
+    MatchList
   }
 }
 </script>
 
 <style lang="stylus">
+@import './common/stylus/mixin.styl'
 html, body, #app
   height: 100%
   text-align: center
 #app
-  background-color: #E0E4E8
+  background-color: color_grey
   .header
     color: white
     background-color: #15191D
@@ -73,6 +99,10 @@ html, body, #app
       padding: 20px 0
       font-size: 16px
       color: white
+      display: inline-block
+      .down
+        display: inline-block
+        transform: rotate(180deg)
     .navigator
       position: relative
       padding-bottom: 12px
@@ -82,7 +112,7 @@ html, body, #app
         justify-content: space-around
         li
           width: 60px
-          color: #636873
+          color: #E0E4E8
           &.active
             color: white
     .triangle-up
@@ -94,7 +124,7 @@ html, body, #app
       height: 0
       border-left: 7px solid transparent
       border-right: 7px solid transparent
-      border-bottom: 8px solid #E0E4E8
+      border-bottom: 8px solid color_grey
       transition: all 0.4s
       &.left
         left: 16.67%
@@ -105,5 +135,5 @@ html, body, #app
     overflow: hidden
     .match-list-wrapper
       height: 100%
-  
+      background-color: #E2E5EA
 </style>
