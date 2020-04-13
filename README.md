@@ -53,3 +53,37 @@ npm run build --report
 ```
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
+## gh-pages
+
+`$ yarn add gh-pages -D`
+
+config\index.js
+
+```js
+    // Paths
+    assetsRoot: path.resolve(__dirname, '../dist'),
+    assetsSubDirectory: 'static',
+    assetsPublicPath: process.env.NODE_ENV === 'production' ? '/cube-app' : '/',
+```
+
+刪除遠端分支
+
+`$ git push origin :gh-pages`
+
+package.json
+
+```js
+"homepage": "https://jacobhsu.github.io/cube-app/",
+"scripts": {
+  "deploy": "yarn build && gh-pages -d dist"
+}
+```
+
+vue.config.js
+
+```js
+module.exports = {
+    publicPath: process.env.NODE_ENV === 'production' ? '/cube-app' : '/',
+}
+```
